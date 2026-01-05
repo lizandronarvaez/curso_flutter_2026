@@ -43,7 +43,7 @@ class _ProgressView extends StatelessWidget {
 }
 
 class _ControllerProgressIndicator extends StatelessWidget {
-  const _ControllerProgressIndicator({super.key});
+  const _ControllerProgressIndicator();
 
   @override
   Widget build(BuildContext context) {
