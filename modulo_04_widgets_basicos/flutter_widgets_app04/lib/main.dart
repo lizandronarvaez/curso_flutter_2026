@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       // declaracion de app router
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'APP FLUTTER 2026 - LIZANDRO NARVAEZ',
       theme: AppTheme(selectedColor: 0).getTheme()
 
       // declaracion de rutas de la aplicación manualmente
