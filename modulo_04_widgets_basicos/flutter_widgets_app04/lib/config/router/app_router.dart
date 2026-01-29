@@ -4,6 +4,7 @@ import '../../presentation/screens/screens.dart';
 final GoRouter appRouter = GoRouter(
   // ruta inicial
   initialLocation: '/',
+
   // rutas del la app
   routes: [
     GoRoute(
@@ -34,6 +35,22 @@ final GoRouter appRouter = GoRouter(
       path: '/snackbars',
       name: SnackbarScreen.name,
       builder: (context, state) => const SnackbarScreen(),
+    ),
+
+    GoRoute(
+      path: '/animated',
+      name: AnimatedScreen.name,
+      builder: (context, state) => const AnimatedScreen(),
+    ),
+    GoRoute(
+      path: '/ui-controls',
+      name: UiControlsScreen.name,
+      builder: (context, state) => const UiControlsScreen(),
+    ),
+    GoRoute(
+      path: '/tutorial',
+      name: AppTutorialScreen.name,
+      builder: (context, state) => const AppTutorialScreen(),
     ),
   ],
 );
