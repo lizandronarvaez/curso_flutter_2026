@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widgets_app04/presentation/providers/theme_provider.dart';
 
-class UiControlsScreen extends StatelessWidget {
+class UiControlsScreen extends ConsumerWidget {
   static String name = 'iu_controls_screen';
 
   const UiControlsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
     return Scaffold(
-      appBar: AppBar(title: Text("Controles UI")),
+      appBar: AppBar(
+        title: Text("Controles UI"),
+        actions: [
+          IconButton(
+            icon: Icon(
+              !isDarkMode
+                  ? Icons.light_mode_outlined
+                  : Icons.dark_mode_outlined,
+            ),
+            onPressed: () =>
+                ref.read(themeNotifierProvider.notifier).toggleDarkMode(),
+          ),
+        ],
+      ),
       body: _UiControlsView(),
     );
   }

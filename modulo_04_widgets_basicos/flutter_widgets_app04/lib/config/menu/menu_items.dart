@@ -63,4 +63,17 @@ final appMenuItems = <MenuItem>[
     link: '/infinite',
     icon: Icons.list_alt_rounded,
   ),
+
+  MenuItem(
+    title: 'Riverpod Counter',
+    subTitle: 'Introduccion a riverpod',
+    link: '/counter-screen',
+    icon: Icons.list_alt_rounded,
+  ),
+  MenuItem(
+    title: 'Cambiar tema',
+    subTitle: 'Cambia el tema de la aplicación',
+    link: '/theme-changer',
+    icon: Icons.color_lens_outlined,
+  ),
 ];
