@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widgets_app04/presentation/providers/theme_provider.dart';
 import 'dart:math' show Random;
 
 class AnimatedScreen extends StatefulWidget {
@@ -35,7 +37,26 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Animated container")),
+      appBar: AppBar(
+        title: const Text("Animated container"),
+        actions: [
+          Consumer(
+            builder: (context, ref, _) {
+              final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
+              return IconButton(
+                icon: Icon(
+                  !isDarkMode
+                      ? Icons.light_mode_outlined
+                      : Icons.dark_mode_outlined,
+                ),
+                onPressed: () => ref
+                    .read(themeNotifierProvider.notifier)
+                    .toggleDarkMode(),
+              );
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 800),

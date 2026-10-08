@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_widgets_app04/presentation/providers/theme_provider.dart';
 
-class SnackbarScreen extends StatelessWidget {
+class SnackbarScreen extends ConsumerWidget {
   static String name = 'snackbar_screen';
 
   const SnackbarScreen({super.key});
@@ -40,9 +42,23 @@ class SnackbarScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
     return Scaffold(
-      appBar: AppBar(title: Text('Snackbars y Diálogos')),
+      appBar: AppBar(
+        title: Text('Snackbars y Diálogos'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              !isDarkMode
+                  ? Icons.light_mode_outlined
+                  : Icons.dark_mode_outlined,
+            ),
+            onPressed: () =>
+                ref.read(themeNotifierProvider.notifier).toggleDarkMode(),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
