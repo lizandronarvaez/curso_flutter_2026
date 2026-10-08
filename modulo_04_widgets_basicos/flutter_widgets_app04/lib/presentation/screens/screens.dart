@@ -7,3 +7,5 @@ export 'package:flutter_widgets_app04/presentation/screens/ui_controls/ui_contro
 export 'package:flutter_widgets_app04/presentation/screens/buttons/buttons_screen.dart';
 export 'package:flutter_widgets_app04/presentation/screens/cards/cards_screen.dart';
 export 'package:flutter_widgets_app04/presentation/screens/home/home_screen.dart';
+export 'package:flutter_widgets_app04/presentation/screens/counter/counter_screen.dart';
+export 'package:flutter_widgets_app04/presentation/screens/theme_changer/theme_changer_screen.dart';
