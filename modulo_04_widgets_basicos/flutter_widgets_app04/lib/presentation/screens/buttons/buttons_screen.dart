@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_widgets_app04/presentation/providers/theme_provider.dart';
 
-class ButtonsScreen extends StatelessWidget {
+class ButtonsScreen extends ConsumerWidget {
   const ButtonsScreen({super.key});
 
   static const name = 'buttons_screen';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
     return Scaffold(
-      appBar: AppBar(title: Text("Buttons Screem")),
+      appBar: AppBar(
+        title: Text("Buttons Screem"),
+        actions: [
+          IconButton(
+            icon: Icon(
+              !isDarkMode
+                  ? Icons.light_mode_outlined
+                  : Icons.dark_mode_outlined,
+            ),
+            onPressed: () =>
+                ref.read(themeNotifierProvider.notifier).toggleDarkMode(),
+          ),
+        ],
+      ),
       body: const _ButtonsView(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_back_ios_new),

@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widgets_app04/presentation/widgets/side_menu.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/menu/menu_items.dart';
+import '../../providers/theme_provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   static const name = 'home_screen';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter + Material 3')),
+      key: scaffoldKey,
+      appBar: AppBar(
+        title: const Text("Pantalla principal con rutas"),
+        actions: [
+          IconButton(
+            icon: Icon(
+              !isDarkMode
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined,
+            ),
+            onPressed: () =>
+                ref.read(themeNotifierProvider.notifier).toggleDarkMode(),
+          ),
+        ],
+      ),
       body: const _HomeView(),
+      drawer: SideMenu(scaffoldKey: scaffoldKey),
     );
   }
 }
@@ -26,7 +47,6 @@ class _HomeView extends StatelessWidget {
       itemCount: appMenuItems.length,
       itemBuilder: (context, index) {
         final menuItem = appMenuItems[index];
-
         return _CustomListTitle(menuItem: menuItem);
       },
     );
