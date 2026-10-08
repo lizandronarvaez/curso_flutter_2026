@@ -1,7 +1,7 @@
 name: flutter_widgets_app04
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 0.1.0
+version: 1.0.0
 
 environment:
   sdk: ^3.10.4
