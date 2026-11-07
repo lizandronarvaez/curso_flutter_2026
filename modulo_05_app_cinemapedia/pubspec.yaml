@@ -1,0 +1,30 @@
+name: modulo_05_app_cinemapedia
+description: "Aplicación para visualizar información y trailers de películas"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Iconos
+  cupertino_icons: ^1.0.8
+  # Navegación
+  go_router: ^17.5.0
+  #variables de entorno
+  flutter_dotenv: ^6.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # Análisis estático
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - .env
