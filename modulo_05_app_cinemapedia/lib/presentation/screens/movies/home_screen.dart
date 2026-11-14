@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modulo_05_app_cinemapedia/presentation/providers/movies/movies_providers.dart';
+
+import '../../providers/movies/movies_providers.dart';
+import '../../providers/movies/movies_slideshow_provider.dart';
+import '../../widgets/movies/movies_slideshow.dart';
+import '../../widgets/shared/custom_appbar.dart';
+import '../../widgets/shared/custom_botton_navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
@@ -9,12 +14,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _HomeView());
+    return Scaffold(
+      body: _HomeView(),
+      bottomNavigationBar: CustomBottonNavigation(),
+    );
   }
 }
 
 class _HomeView extends ConsumerStatefulWidget {
-  const _HomeView({super.key});
+  const _HomeView();
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -29,14 +37,13 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayingProvider);
-    if (nowPlayingMovies.isEmpty) return CircularProgressIndicator();
-    return ListView.builder(
-      itemCount: nowPlayingMovies.length,
-      itemBuilder: (context, index) {
-        final movie = nowPlayingMovies[index];
-        return ListTile(title: Text(movie.title));
-      },
+    final moviesSlideshow = ref.watch(moviesSlideshowProvider);
+    if (moviesSlideshow.isEmpty) return CircularProgressIndicator();
+    return Column(
+      children: [
+        CustomAppbar(),
+        MoviesSlideshow(movies: moviesSlideshow),
+      ],
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:modulo_05_app_cinemapedia/utils/app_constants.dart';
+import 'package:modulo_05_app_cinemapedia/config/constants/app_constants.dart';
 
 class MovieMovieDB {
   final bool adult;
